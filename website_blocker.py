@@ -2,13 +2,13 @@ import time
 from datetime import datetime as dt
 
 tempHost = "hosts"
-pathVar = "C:\Windows\System32\drivers\etc"
+pathVar = r"C:\Windows\System32\drivers\etc"
 host = "127.0.0.1"
 webList = ["www.facebook.com" , "www.Pornhub.com", "www.xnxx.com"]
 
 def checktime(pathVar):
 	while True:
-		if dt(dt.now().year,dt.now().month,dt.now().day,15) < dt.now() < dt(dt.now().year,dt.now().month,dt.now().day,19):
+		if dt(dt.now().year,dt.now().month,dt.now().day,12) < dt.now() < dt(dt.now().year,dt.now().month,dt.now().day,16):
 			handleFileWhenBlocked(pathVar)
 			break
 		else:
@@ -25,7 +25,7 @@ def handleFileWhenBlocked(pathVar):
 			if website in content:
 				pass
 			else:
-				file.write(host + "" + website + "\n")
+				file.write(host + " " + website + "\n")
 
 def handleFileWhenNotBlocked(pathVar):
 	with open(pathVar, "r+") as file:
