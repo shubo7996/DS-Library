@@ -7,6 +7,12 @@ class LinkedList(object):
 	def __init__(self):
 		self.head=None
 
+	def isListEmpty():
+		if self.head is None:
+			return True
+		else:
+			return False
+
 	@property
 	def listLength(self):
 		currentNode=self.head
@@ -54,7 +60,19 @@ class LinkedList(object):
 			lastnode.next=nodeObj
 		#print("__Done__")
 
+	def deleteHead(self):
+		if self.isListEmpty() is False:
+			previousHead=self.head
+			self.head=self.head.next
+			previousHead=Node
+		else:
+			print("Linked List is empty!")
+
 	def deleteAtEnd(self):
+		if self.isListEmpty() is False:
+			if self.head.next is None:
+				self.deleteHead()
+				return
 		lastnode=self.head
 		while lastnode.next is not None:
 			previousNode=lastnode
@@ -62,16 +80,25 @@ class LinkedList(object):
 		previousNode.next=None
 
 	def deleteAt(self,position):
-		currentNode= self.head
-		currentPosition=0
-		while True:
-			if currentPosition==position:
-				previousNode.next=currentNode.next 
-				currentNode.next=None 
-				break
-			previousNode=currentNode
-			currentNode=currentNode.next
-			currentPosition+=1
+		if position<0 or position>=self.listLength:
+			print("Invalid position!")
+			return
+
+
+		if self.isListEmpty() is not False:
+			if position==0:
+				self.deleteHead()
+				return
+			currentNode= self.head
+			currentPosition=0
+			while True:
+				if currentPosition==position:
+					previousNode.next=currentNode.next 
+					currentNode.next=None 
+					break
+				previousNode=currentNode
+				currentNode=currentNode.next
+				currentPosition+=1
 
 	def printList(self):
 		if self.head is None:
