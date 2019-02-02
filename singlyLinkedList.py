@@ -54,6 +54,25 @@ class LinkedList(object):
 			lastnode.next=nodeObj
 		#print("__Done__")
 
+	def find_value(self,value):
+		if self.head==None:
+			return None
+		else:
+			self._find_node(self.head,value)
+
+	def _find_node(self, cur_node,value):
+		if value==cur_node.value:
+			return cur_node
+		else:
+			_find_node(cur_node.next,value)
+
+	def delete_value(self,value):
+		return self._delete_node(self.find_value(value))
+
+	def _delete_node(self,value):
+		pass
+
+
 	def printList(self):
 		if self.head is None:
 			print("List is empty")
