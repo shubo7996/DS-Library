@@ -33,8 +33,8 @@ class LinkedList(object):
 		currentPosition=0
 		while True:
 			if currentPosition==position:
-				previousNode.next=nodeObj
-				nodeObj.next=currentNode
+				previousNode.next=nodeObj 
+				nodeObj.next=currentNode 
 				break
 			previousNode=currentNode
 			currentNode=currentNode.next
@@ -54,24 +54,24 @@ class LinkedList(object):
 			lastnode.next=nodeObj
 		#print("__Done__")
 
-	def find_value(self,value):
-		if self.head==None:
-			return None
-		else:
-			self._find_node(self.head,value)
+	def deleteAtEnd(self):
+		lastnode=self.head
+		while lastnode.next is not None:
+			previousNode=lastnode
+			lastnode=lastnode.next
+		previousNode.next=None
 
-	def _find_node(self, cur_node,value):
-		if value==cur_node.value:
-			return cur_node
-		else:
-			_find_node(cur_node.next,value)
-
-	def delete_value(self,value):
-		return self._delete_node(self.find_value(value))
-
-	def _delete_node(self,value):
-		pass
-
+	def deleteAt(self,position):
+		currentNode= self.head
+		currentPosition=0
+		while True:
+			if currentPosition==position:
+				previousNode.next=currentNode.next 
+				currentNode.next=None 
+				break
+			previousNode=currentNode
+			currentNode=currentNode.next
+			currentPosition+=1
 
 	def printList(self):
 		if self.head is None:
@@ -97,6 +97,7 @@ def main():
 	linkedlist_obj.insertData(thirdNode_obj)
 	linkedlist_obj.insertAtHead(headNode_obj)
 	linkedlist_obj.insertAt(secondhalfNode_obj,position=0)
+	linkedlist_obj.deleteAt(position=2)
 	linkedlist_obj.printList()
 
 
