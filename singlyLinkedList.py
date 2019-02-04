@@ -7,7 +7,7 @@ class LinkedList(object):
 	def __init__(self):
 		self.head=None
 
-	def isListEmpty():
+	def isListEmpty(self):
 		if self.head is None:
 			return True
 		else:
@@ -124,7 +124,7 @@ def main():
 	linkedlist_obj.insertData(thirdNode_obj)
 	linkedlist_obj.insertAtHead(headNode_obj)
 	linkedlist_obj.insertAt(secondhalfNode_obj,position=0)
-	linkedlist_obj.deleteAt(position=2)
+	linkedlist_obj.deleteHead()
 	linkedlist_obj.printList()
 
 
