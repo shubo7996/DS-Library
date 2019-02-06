@@ -1,11 +1,10 @@
 class Node(object):
 
-	def __init__(self,character):
+	def __init__(self,character,value):
 		self.character=character
 		self.leftNode=None
 		self.rightNode=None
 		self.middleNode=None
-		self.value=None
 
 #trie has 26 children, not memory erffiecient
 #Ternary Search Trees are memory effcient
@@ -31,6 +30,7 @@ class TernaryTree(object):
 			node.middleNode=self._putItem(node.middleNode,key,value,index+1)
 		else:
 			node.value=value
+			#print(node.value)
 
 		return node
 
@@ -40,6 +40,7 @@ class TernaryTree(object):
 		if node==None:
 			return None
 
+		print(node.value)
 		return node.value
 
 	def _getItem(self,node,key, index):
