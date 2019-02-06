@@ -136,7 +136,7 @@ class BST(object):
 			node.value=successor.value
 			self.delete_node(successor)
 
-
+	@property
 	def height(self):
 		if self.root==None:
 			return 0
@@ -159,7 +159,7 @@ def generateNumber(tree,num_elems=10,maxInt=50):
 		tree.insert(currentelement)
 	print("unsorted list:", list2)
 	return tree
-
+ 
 
 def main():
 	tree=BST()
@@ -174,7 +174,7 @@ def main():
 	sorted=tree.makeList(tree.root)
 	print("sorted list:", sorted)
 	print(tree.search(8))
-	print("Height of the Tree is", tree.height())
+	print("Height of the Tree is", tree.height)
 	tree.delete_value(23)
 	tree.printTree
 
