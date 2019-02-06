@@ -71,12 +71,14 @@ class AVLTree(object):
 			if cur_node.left_child==None:
 				cur_node.left_child=Node(value)
 				cur_node.left_child.parent=cur_node #set parent to the current left child
+				self._inspect_insertion(cur_node.left_child)
 			else:
 				self._insert(value,cur_node.left_child)
 		elif value > cur_node.value:
 			if cur_node.right_child==None:
 				cur_node.right_child=Node(value)
 				cur_node.right_child.parent=cur_node #set parent to the current right child
+				self._inspect_insertion(cur_node.right_child)
 			else:
 				self._insert(value,cur_node.right_child)
 		else:
@@ -91,7 +93,7 @@ class AVLTree(object):
 	def _printTree(self,cur_node):
 		if cur_node!=None:
 			self._printTree(cur_node.left_child)
-			print(str(cur_node.value))
+			print '%s,h=%d'%(str(cur_node.value),cur_node.height)
 			self._printTree(cur_node.right_child)
 
 	#def makeList(self,cur_node):
@@ -186,6 +188,11 @@ class AVLTree(object):
 			successor=min_value_node(node.right_child)
 			node.value=successor.value
 			self.delete_node(successor)
+			return
+
+		if node_parent!=None:
+			node_parent.height=1+max(self.get_height(node_parent.left_child),self.get_height(node_parent.right_child))
+			self._inspect_deletion(node_parent)
 
 
 	def height(self):
