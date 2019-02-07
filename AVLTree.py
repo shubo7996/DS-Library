@@ -211,7 +211,23 @@ class AVLTree(object):
 	#new func for AVL
 
 	def _inspect_insertion(self,cur_node,path=[]):
-		pass
+		if cur_node.parent is None:
+			return
+		path=[cur_node]+path
+		
+		left_height=self.get_height(cur_node.parent.left_child)
+		right_height=self.get_height(cur_node.parent.right_child)
+
+		if abs(left_height-right_height)>1:
+			path=[cur_node.parent]+path
+			self._rebalance_node(path[0],path[1],path[2])
+			return
+
+		new_height=1+cur_node.height
+		if new_height>cur_node.parent.height:
+			cur_node.parent.height=new_height
+
+		self._inspect_insertion(cur_node.parent,path)
 
 	def _inspect_deletion(self,cur_node):
 		pass
