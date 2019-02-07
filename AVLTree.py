@@ -230,10 +230,33 @@ class AVLTree(object):
 		self._inspect_insertion(cur_node.parent,path)
 
 	def _inspect_deletion(self,cur_node):
-		pass
+		if cur_node is None:
+			return
+
+		left_height=self.get_height(cur_node.left_child)
+		right_height=self.get_height(cur_node.right_child)
+
+		if abs(left_height-right_height)>1:
+			y=self.taller_child(cur_node)
+			x=self.taller_child(y)
+			self._rebalance_node(cur_node,y,x)
+
+		self._inspect_deletion(cur_node.parent)
 
 	def _rebalance_node(self,x,y,z):
-		pass
+		if y==z.left_child and x==y.left_child:
+			self._right_rotate(z)
+		elif y==z.left_child and x==y.right_child:
+			self._left_rotate(y)
+			self._right_rotate(z)
+		elif y==z.right_child and x==y.right_child:
+			self._left_rotate(z)
+		elif y==z.right_child and x==y.left_child:
+			self._right_rotate(y)
+			self._left_rotate(z)
+		else:
+			raise Exception('y,x,z nodes configuration not recognized!')
+		
 
 	def _right_rotate(self,z):
 		pass
