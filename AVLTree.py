@@ -277,10 +277,28 @@ class AVLTree(object):
 				y.parent.right_child=y
 		z.height=1+max(self.get_height(z.left_child),self.get_height(z.right_child))
 		y.height=1+max(self.get_height(y.left_child),self.get_height(y.right_child))
-		
+
 
 	def _left_rotate(self,z):
-		pass
+		sub_root=z.parent
+		y=z.right_child
+		t3=y.left_child
+		y.left_child=z
+		z.parent=y
+		z.right_child=t3
+		if t3!=None:
+			t3.parent=z
+		y.parent=sub_root
+		if y.parent==None:
+			self.root=y
+		else:
+			if y.parent.left_child==z:
+				y.parent.left_child=y
+			else:
+				y.parent.right_child=y
+		z.height=1+max(self.get_height(z.left_child),self.get_height(z.right_child))
+		y.height=1+max(self.get_height(y.left_child),self.get_height(y.right_child))
+		
 
 	def get_height(self,cur_node):
 		pass
